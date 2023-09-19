@@ -3,7 +3,7 @@ import random
 import pygame as pg
 import neat
 
-ai_playing = False
+ai_playing = True
 generation = 0
 
 SCREEN_WIDTH = 500
