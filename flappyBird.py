@@ -3,7 +3,7 @@ import random
 import pygame as pg
 import neat
 
-ai_playing = True
+ai_playing = False
 generation = 0
 
 SCREEN_WIDTH = 500
@@ -221,12 +221,13 @@ def main(genomes, config): # Fitness function
       break
     for i, bird in enumerate(birds):
       bird.move()
-      genome_list[i].fitness += 0.1
-      output = neural_networks[i].activate((bird.y, 
-                                            abs(bird.y - pipes[index_pipe].heigth), 
-                                            abs(bird.y - pipes[index_pipe].bottom_pos)))
-      if output[0] > 0.5:
-        bird.jump()
+      if ai_playing:
+        genome_list[i].fitness += 0.1
+        output = neural_networks[i].activate((bird.y, 
+                                              abs(bird.y - pipes[index_pipe].heigth), 
+                                              abs(bird.y - pipes[index_pipe].bottom_pos)))
+        if output[0] > 0.5:
+          bird.jump()
     floor.move()
       
     add_pipe = False
